@@ -235,11 +235,11 @@ if(LUAU_BUILD_WEB)
     target_link_libraries(Luau.Web PRIVATE Luau.Compiler Luau.VM)
 
     # declare exported functions to emscripten
-    target_link_options(Luau.Web PRIVATE -sEXPORTED_FUNCTIONS=['_executeScript'] -sEXPORTED_RUNTIME_METHODS=['ccall','cwrap'])
+    # target_link_options(Luau.Web PRIVATE)
 
     # add -fexceptions for emscripten to allow exceptions to be caught in C++
     target_link_options(Luau.Web PRIVATE -fexceptions)
 
     # the output is a single .js file with an embedded wasm blob
-    target_link_options(Luau.Web PRIVATE -sSINGLE_FILE=1)
+    target_link_options(Luau.Web PRIVATE -sWASM=1)
 endif()
